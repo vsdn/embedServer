@@ -1,5 +1,8 @@
 package kr.n;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.servlet.ServletException;
 
 import org.apache.catalina.LifecycleException;
@@ -12,9 +15,13 @@ public class launcher {
         tomcat.setBaseDir("temp");
         tomcat.setPort(8090);
         tomcat.setHostname("localhost");
-         
+        
+        Path relativePath = Paths.get("");
+        String path = relativePath.toAbsolutePath().toString();
+        System.out.println("Working Directory [" + path + "]");
+        
         String contextPath = "";     
-        String warFilePath = "D:\\eGovFrameDev-3.8.0-64bit\\internExample.war";
+        String warFilePath = path + "\\war\\ROOT.war";
         
         System.out.println(tomcat.getConnector().getDomain());
         tomcat.getHost().setAppBase(".");
